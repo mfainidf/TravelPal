@@ -341,10 +341,17 @@ function filterLocations(category) {
     
     // Update button states
     const buttons = document.querySelectorAll('.btn-filter');
+    const categoryMap = {
+        'all': 'All',
+        'attraction': 'Attractions',
+        'restaurant': 'Restaurants',
+        'hotel': 'Hotels',
+        'activity': 'Activities'
+    };
+    
     buttons.forEach(btn => {
         btn.classList.remove('active');
-        if ((category === 'all' && btn.textContent === 'All') ||
-            btn.textContent.toLowerCase().includes(category)) {
+        if (btn.textContent === categoryMap[category]) {
             btn.classList.add('active');
         }
     });
@@ -414,4 +421,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCustomPreparation();
     renderCustomBaggage();
     renderLocations();
+    
+    // Set dynamic copyright year
+    const currentYear = new Date().getFullYear();
+    document.getElementById('footer-copyright').textContent = 
+        `© ${currentYear} TravelPal - Your Journey Planning Companion`;
 });
