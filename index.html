@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelPal - Your Journey Planning Companion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🌍 TravelPal</h1>
+            <p class="tagline">Your Complete Journey Planning Companion</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab-button active" data-tab="journey">Journey Planning</button>
+            <button class="tab-button" data-tab="preparation">Travel Preparation</button>
+            <button class="tab-button" data-tab="baggage">Baggage Checklist</button>
+            <button class="tab-button" data-tab="locations">Best Locations</button>
+        </nav>
+
+        <!-- Journey Planning Section -->
+        <section id="journey-tab" class="tab-content active">
+            <h2>📅 Journey Planning</h2>
+            <div class="card">
+                <div class="form-group">
+                    <label for="destination">Destination:</label>
+                    <input type="text" id="destination" placeholder="Where are you going?">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="start-date">Start Date:</label>
+                        <input type="date" id="start-date">
+                    </div>
+                    <div class="form-group">
+                        <label for="end-date">End Date:</label>
+                        <input type="date" id="end-date">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="budget">Budget ($):</label>
+                    <input type="number" id="budget" placeholder="Estimated budget">
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes:</label>
+                    <textarea id="notes" rows="4" placeholder="Additional notes about your journey..."></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="saveJourney()">Save Journey Plan</button>
+            </div>
+
+            <div class="card" id="journey-display" style="display: none;">
+                <h3>Current Journey</h3>
+                <div id="journey-info"></div>
+                <button class="btn btn-secondary" onclick="editJourney()">Edit Journey</button>
+            </div>
+        </section>
+
+        <!-- Travel Preparation Section -->
+        <section id="preparation-tab" class="tab-content">
+            <h2>📋 Travel Preparation</h2>
+            <div class="card">
+                <h3>Essential Preparations</h3>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="prep-passport" onchange="savePreparationState()">
+                        <label for="prep-passport">Check passport validity (6+ months)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="prep-visa" onchange="savePreparationState()">
+                        <label for="prep-visa">Apply for visa (if required)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="prep-insurance" onchange="savePreparationState()">
+                        <label for="prep-insurance">Purchase travel insurance</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="prep-vaccinations" onchange="savePreparationState()">
+                        <label for="prep-vaccinations">Get required vaccinations</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="prep-tickets" onchange="savePreparationState()">
+                        <label for="prep-tickets">Book flights/train tickets</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="prep-accommodation" onchange="savePreparationState()">
+                        <label for="prep-accommodation">Reserve accommodation</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="prep-currency" onchange="savePreparationState()">
+                        <label for="prep-currency">Exchange currency</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="prep-bank" onchange="savePreparationState()">
+                        <label for="prep-bank">Notify bank of travel dates</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="prep-copies" onchange="savePreparationState()">
+                        <label for="prep-copies">Make copies of important documents</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="prep-emergency" onchange="savePreparationState()">
+                        <label for="prep-emergency">Save emergency contacts</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Custom Preparation Items</h3>
+                <div class="add-item-form">
+                    <input type="text" id="custom-prep-input" placeholder="Add custom preparation item...">
+                    <button class="btn btn-primary" onclick="addCustomPreparation()">Add</button>
+                </div>
+                <div id="custom-prep-list" class="checklist"></div>
+            </div>
+        </section>
+
+        <!-- Baggage Checklist Section -->
+        <section id="baggage-tab" class="tab-content">
+            <h2>🧳 Baggage Checklist</h2>
+            
+            <div class="card">
+                <h3>Clothing</h3>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-shirts" onchange="saveBaggageState()">
+                        <label for="bag-shirts">Shirts/Tops</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-pants" onchange="saveBaggageState()">
+                        <label for="bag-pants">Pants/Shorts</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-underwear" onchange="saveBaggageState()">
+                        <label for="bag-underwear">Underwear & Socks</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-jacket" onchange="saveBaggageState()">
+                        <label for="bag-jacket">Jacket/Sweater</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-shoes" onchange="saveBaggageState()">
+                        <label for="bag-shoes">Comfortable shoes</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-sleepwear" onchange="saveBaggageState()">
+                        <label for="bag-sleepwear">Sleepwear</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Toiletries</h3>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-toothbrush" onchange="saveBaggageState()">
+                        <label for="bag-toothbrush">Toothbrush & Toothpaste</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-shampoo" onchange="saveBaggageState()">
+                        <label for="bag-shampoo">Shampoo & Conditioner</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-soap" onchange="saveBaggageState()">
+                        <label for="bag-soap">Soap/Body Wash</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-deodorant" onchange="saveBaggageState()">
+                        <label for="bag-deodorant">Deodorant</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-sunscreen" onchange="saveBaggageState()">
+                        <label for="bag-sunscreen">Sunscreen</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-medications" onchange="saveBaggageState()">
+                        <label for="bag-medications">Medications & First Aid</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Electronics & Documents</h3>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-phone" onchange="saveBaggageState()">
+                        <label for="bag-phone">Phone & Charger</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-adapter" onchange="saveBaggageState()">
+                        <label for="bag-adapter">Power Adapter</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-camera" onchange="saveBaggageState()">
+                        <label for="bag-camera">Camera</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-passport" onchange="saveBaggageState()">
+                        <label for="bag-passport">Passport</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-tickets" onchange="saveBaggageState()">
+                        <label for="bag-tickets">Tickets & Confirmations</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="bag-wallet" onchange="saveBaggageState()">
+                        <label for="bag-wallet">Wallet & Cards</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Custom Baggage Items</h3>
+                <div class="add-item-form">
+                    <input type="text" id="custom-bag-input" placeholder="Add custom baggage item...">
+                    <button class="btn btn-primary" onclick="addCustomBaggage()">Add</button>
+                </div>
+                <div id="custom-bag-list" class="checklist"></div>
+            </div>
+        </section>
+
+        <!-- Best Locations Section -->
+        <section id="locations-tab" class="tab-content">
+            <h2>📍 Best Locations</h2>
+            
+            <div class="card">
+                <h3>Add New Location</h3>
+                <div class="form-group">
+                    <label for="location-name">Location Name:</label>
+                    <input type="text" id="location-name" placeholder="e.g., Eiffel Tower">
+                </div>
+                <div class="form-group">
+                    <label for="location-category">Category:</label>
+                    <select id="location-category">
+                        <option value="attraction">Tourist Attraction</option>
+                        <option value="restaurant">Restaurant</option>
+                        <option value="hotel">Hotel</option>
+                        <option value="activity">Activity</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="location-rating">Rating:</label>
+                    <select id="location-rating">
+                        <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                        <option value="4">⭐⭐⭐⭐ Very Good</option>
+                        <option value="3">⭐⭐⭐ Good</option>
+                        <option value="2">⭐⭐ Fair</option>
+                        <option value="1">⭐ Poor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="location-notes">Notes:</label>
+                    <textarea id="location-notes" rows="3" placeholder="Add notes about this location..."></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="addLocation()">Add Location</button>
+            </div>
+
+            <div class="card">
+                <h3>Your Saved Locations</h3>
+                <div class="filter-buttons">
+                    <button class="btn btn-filter active" onclick="filterLocations('all')">All</button>
+                    <button class="btn btn-filter" onclick="filterLocations('attraction')">Attractions</button>
+                    <button class="btn btn-filter" onclick="filterLocations('restaurant')">Restaurants</button>
+                    <button class="btn btn-filter" onclick="filterLocations('hotel')">Hotels</button>
+                    <button class="btn btn-filter" onclick="filterLocations('activity')">Activities</button>
+                </div>
+                <div id="locations-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 TravelPal - Your Journey Planning Companion</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
