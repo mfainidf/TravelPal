@@ -146,7 +146,8 @@ class TravelPal {
         const apiKey = input.value.trim();
 
         if (!apiKey) {
-            alert('Please enter a valid API key.');
+            // Show error in suggestions container instead of alert
+            this.showError('Please enter a valid API key.');
             return;
         }
 
@@ -266,7 +267,7 @@ Format your response as a numbered list with each entry on a new line.`;
             const trimmed = line.trim();
             
             // Check if it's a numbered item (e.g., "1.", "1)", "1 -", etc.)
-            const numberMatch = trimmed.match(/^(\d+)[.\)\-:]\s*(.+)/);
+            const numberMatch = trimmed.match(/^(\d+)[.)\-:]\s*(.+)/);
             
             if (numberMatch) {
                 // Save previous suggestion if exists
@@ -278,7 +279,7 @@ Format your response as a numbered list with each entry on a new line.`;
                 const titleAndDesc = numberMatch[2];
                 
                 // Try to split title and description by common separators
-                const separatorMatch = titleAndDesc.match(/^([^:\-–—]+)[\-–—:]\s*(.+)/);
+                const separatorMatch = titleAndDesc.match(/^([^:\-–—]+)[-–—:]\s*(.+)/);
                 
                 if (separatorMatch) {
                     currentSuggestion = {
@@ -291,7 +292,7 @@ Format your response as a numbered list with each entry on a new line.`;
                         description: ''
                     };
                 }
-            } else if (currentSuggestion && trimmed && !trimmed.match(/^[\*\-]/)) {
+            } else if (currentSuggestion && trimmed && !trimmed.match(/^[*\-]/)) {
                 // Add to current suggestion's description
                 currentSuggestion.description += (currentSuggestion.description ? ' ' : '') + trimmed;
             }
@@ -304,11 +305,11 @@ Format your response as a numbered list with each entry on a new line.`;
 
         // If parsing failed, try alternative parsing with asterisks or dashes
         if (suggestions.length === 0) {
-            const bulletMatches = text.match(/[\*\-]\s*\*?\*?([^:\n]+)[\-–—:]?\s*([^\n]+)/g);
+            const bulletMatches = text.match(/[*\-]\s*\*?\*?([^:\n]+)[-–—:]?\s*([^\n]+)/g);
             if (bulletMatches) {
                 bulletMatches.forEach(match => {
-                    const cleaned = match.replace(/^[\*\-]\s*\*?\*?/, '').trim();
-                    const parts = cleaned.split(/[\-–—:]/);
+                    const cleaned = match.replace(/^[*\-]\s*\*?\*?/, '').trim();
+                    const parts = cleaned.split(/[-–—:]/);
                     if (parts.length >= 2) {
                         suggestions.push({
                             title: parts[0].trim(),
