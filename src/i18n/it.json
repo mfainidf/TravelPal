@@ -1,0 +1,29 @@
+{
+  "auth": {
+    "login": {
+      "title": "Accedi",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Accedi",
+      "googleButton": "Accedi con Google",
+      "noAccount": "Non hai un account?",
+      "register": "Registrati",
+      "errors": {
+        "required": "Campo obbligatorio",
+        "invalidEmail": "Email non valida",
+        "minPassword": "La password deve avere almeno 6 caratteri",
+        "invalidCredentials": "Credenziali non valide",
+        "networkError": "Errore di rete. Riprova più tardi",
+        "unknownError": "Errore sconosciuto. Riprova"
+      }
+    },
+    "register": {
+      "title": "Registrati"
+    }
+  },
+  "tabs": {
+    "home": "Home",
+    "trips": "Viaggi",
+    "profile": "Profilo"
+  }
+}
