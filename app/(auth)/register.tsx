@@ -55,10 +55,17 @@ export default function RegisterScreen() {
       });
 
       if (error) {
-        // Handle specific error cases
-        if (error.message.includes('already registered') || error.message.includes('already in use')) {
+        // Handle specific error cases using status codes when available
+        const errorMessage = error.message.toLowerCase();
+        const statusCode = (error as any).status;
+        
+        // Check for user already exists (status 422 or 400)
+        if (statusCode === 422 || statusCode === 400 || 
+            errorMessage.includes('already registered') || 
+            errorMessage.includes('already in use') ||
+            errorMessage.includes('user already exists')) {
           Alert.alert('Errore', t('auth.register.errors.emailInUse'));
-        } else if (error.message.includes('network') || error.message.includes('fetch')) {
+        } else if (errorMessage.includes('network') || errorMessage.includes('fetch')) {
           Alert.alert('Errore', t('auth.register.errors.networkError'));
         } else {
           Alert.alert('Errore', error.message);

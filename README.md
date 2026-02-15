@@ -106,6 +106,32 @@ La schermata di login (`app/(auth)/login.tsx`) include:
 - Dopo login riuscito → Home (gestito dal root layout)
 - Link alla registrazione
 
+## Registration Screen Features
+
+La schermata di registrazione (`app/(auth)/register.tsx`) include:
+
+✅ **Form completo**
+- Nome utente
+- Email
+- Password
+- Conferma password
+
+✅ **Validazione campi**
+- Validazione con Zod schema
+- Email formato valido
+- Password minimo 6 caratteri
+- Conferma password deve corrispondere
+
+✅ **Integrazione Supabase Auth**
+- Chiamata signup con salvataggio nome in user metadata
+- Gestione errori specifici (email già in uso, errori di rete)
+- Feedback successo con Alert
+
+✅ **UI professionale**
+- React Native Paper components
+- Loading state durante registrazione
+- Link per tornare al login
+
 ## Scripts
 
 - `npm start` - Avvia il dev server Expo
@@ -141,7 +167,7 @@ Il sistema di autenticazione è gestito da:
 
 ## Prossimi passi
 
-- [ ] Implementare schermata di registrazione completa
+- [x] Implementare schermata di registrazione completa
 - [ ] Aggiungere reset password
 - [ ] Implementare gestione viaggi
 - [ ] Aggiungere test automatizzati
