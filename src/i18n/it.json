@@ -50,5 +50,33 @@
     "networkError": "Errore di connessione alla rete",
     "invalidInput": "Input non valido",
     "requiredField": "Campo obbligatorio"
+  },
+  "profile": {
+    "title": "Profilo",
+    "fullName": "Nome completo",
+    "avatar": "Avatar",
+    "travelPreferences": "Preferenze di viaggio",
+    "budget": "Budget",
+    "travelStyle": "Stile di viaggio",
+    "accommodation": "Alloggio",
+    "transportation": "Trasporto",
+    "budgetLow": "Economico",
+    "budgetMedium": "Medio",
+    "budgetHigh": "Alto",
+    "styleAdventure": "Avventura",
+    "styleRelaxation": "Relax",
+    "styleCulture": "Cultura",
+    "styleNature": "Natura",
+    "accomHotel": "Hotel",
+    "accomHostel": "Ostello",
+    "accomAirbnb": "Airbnb",
+    "accomCamping": "Campeggio",
+    "transportFlight": "Aereo",
+    "transportTrain": "Treno",
+    "transportCar": "Auto",
+    "transportBus": "Autobus",
+    "selectAvatar": "Seleziona un'immagine",
+    "editProfile": "Modifica profilo",
+    "viewProfile": "Visualizza profilo"
   }
 }

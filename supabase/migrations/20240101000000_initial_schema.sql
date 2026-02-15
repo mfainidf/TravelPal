@@ -14,6 +14,7 @@ CREATE TABLE public.profiles (
     email TEXT NOT NULL,
     full_name TEXT,
     avatar_url TEXT,
+    travel_preferences JSONB DEFAULT '{}',
     created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::TEXT, NOW()) NOT NULL,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::TEXT, NOW()) NOT NULL
 );
