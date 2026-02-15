@@ -3,8 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function RegisterScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Register</Text>
-      <Text style={styles.subtitle}>Placeholder for register screen</Text>
+      <Text style={styles.title}>Registrazione</Text>
+      <Text style={styles.subtitle}>Placeholder per la schermata di registrazione</Text>
     </View>
   );
 }

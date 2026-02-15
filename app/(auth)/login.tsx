@@ -3,8 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function LoginScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <Text style={styles.subtitle}>Placeholder for login screen</Text>
+      <Text style={styles.title}>Accedi</Text>
+      <Text style={styles.subtitle}>Placeholder per la schermata di login</Text>
     </View>
   );
 }
