@@ -19,7 +19,9 @@ export default function AddProfileScreen() {
 
     await addProfile(email, password, name);
 
-    if (!error) {
+    // Check the store's error state after the operation
+    const currentError = useProfileStore.getState().error;
+    if (!currentError) {
       router.back();
     }
   };

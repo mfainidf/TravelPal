@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, ScrollView, TouchableOpacity, GestureResponderEvent } from 'react-native';
 import { Avatar, Text, Card, IconButton, ActivityIndicator } from 'react-native-paper';
 import { useProfileStore } from '../stores/profileStore';
 import { UserProfile } from '../types/profile';
@@ -25,7 +25,7 @@ export const ProfileSelector: React.FC<ProfileSelectorProps> = ({ onAddProfile }
     }
   };
 
-  const handleRemoveProfile = async (profileId: string, e: any) => {
+  const handleRemoveProfile = async (profileId: string, e: GestureResponderEvent) => {
     e.stopPropagation();
     await removeProfile(profileId);
   };
@@ -66,7 +66,7 @@ interface ProfileCardProps {
   profile: UserProfile;
   isActive: boolean;
   onPress: () => void;
-  onRemove: (e: any) => void;
+  onRemove: (e: GestureResponderEvent) => void;
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ profile, isActive, onPress, onRemove }) => {

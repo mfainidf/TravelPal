@@ -154,7 +154,7 @@ export const useProfileStore = create<ProfileStoreState>((set, get) => ({
       });
     } catch (error) {
       set({
-        error: error instanceof Error ? error.message : 'Errore nell\'aggiunta profilo',
+        error: error instanceof Error ? error.message : 'Errore nell'aggiunta profilo',
         isLoading: false,
       });
     }
