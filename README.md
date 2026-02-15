@@ -81,13 +81,69 @@ TravelPal/
 │   ├── services/
 │   │   ├── supabase.ts         # Supabase client configuration
 │   │   └── queryClient.ts      # React Query client with persistence
-│   └── stores/
-│       └── authStore.ts        # Zustand auth store
+│   ├── stores/
+│   │   └── authStore.ts        # Zustand auth store
+│   └── hooks/
+│       └── useSupabaseQuery.ts # Example React Query hooks with Supabase
 ├── package.json
 ├── tsconfig.json
 ├── app.json
 └── .env.example
 ```
+
+## Usage Examples
+
+### Using the Auth Store
+
+```typescript
+import { useAuthStore } from './src/stores/authStore';
+
+function MyComponent() {
+  const { user, loading, signOut } = useAuthStore();
+
+  if (loading) return <Text>Loading...</Text>;
+
+  return (
+    <View>
+      {user ? (
+        <>
+          <Text>Welcome, {user.email}</Text>
+          <Button title="Sign Out" onPress={signOut} />
+        </>
+      ) : (
+        <Text>Please sign in</Text>
+      )}
+    </View>
+  );
+}
+```
+
+### Using React Query with Supabase
+
+```typescript
+import { useQuery } from '@tanstack/react-query';
+import { supabase } from './src/services/supabase';
+
+function MyDataComponent() {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['my-data'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('my_table')
+        .select('*');
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  if (isLoading) return <Text>Loading...</Text>;
+  if (error) return <Text>Error: {error.message}</Text>;
+
+  return <Text>Data: {JSON.stringify(data)}</Text>;
+}
+```
+
+See `src/hooks/useSupabaseQuery.ts` for more examples of integrating React Query with Supabase.
 
 ## Technologies
 
