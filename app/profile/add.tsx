@@ -19,9 +19,9 @@ export default function AddProfileScreen() {
 
     await addProfile(email, password, name);
 
-    // Check the store's error state after the operation
-    const currentError = useProfileStore.getState().error;
-    if (!currentError) {
+    // The error state from the hook will update automatically
+    // Router will navigate back if no error is present on next render
+    if (!useProfileStore.getState().error) {
       router.back();
     }
   };

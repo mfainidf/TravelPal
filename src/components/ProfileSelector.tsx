@@ -91,7 +91,12 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ profile, isActive, onPress, o
             )}
             {isActive && (
               <View style={styles.activeIndicator}>
-                <IconButton icon="check-circle" size={16} iconColor="white" />
+                <IconButton 
+                  icon="check-circle" 
+                  size={16} 
+                  iconColor="white"
+                  accessibilityLabel="Profilo attivo"
+                />
               </View>
             )}
           </View>
@@ -108,6 +113,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ profile, isActive, onPress, o
             size={16}
             onPress={onRemove}
             style={styles.removeButton}
+            accessibilityLabel="Rimuovi profilo"
           />
         </Card.Content>
       </Card>

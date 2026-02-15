@@ -17,7 +17,9 @@ export class ProfileStorageService {
       const profilesJson = await AsyncStorage.getItem(PROFILES_STORAGE_KEY);
       return profilesJson ? JSON.parse(profilesJson) : [];
     } catch (error) {
-      console.error('Error getting profiles:', error);
+      if (__DEV__) {
+        console.error('Error getting profiles:', error);
+      }
       return [];
     }
   }
@@ -29,7 +31,9 @@ export class ProfileStorageService {
     try {
       await AsyncStorage.setItem(PROFILES_STORAGE_KEY, JSON.stringify(profiles));
     } catch (error) {
-      console.error('Error saving profiles:', error);
+      if (__DEV__) {
+        console.error('Error saving profiles:', error);
+      }
       throw error;
     }
   }
@@ -75,7 +79,9 @@ export class ProfileStorageService {
     try {
       return await AsyncStorage.getItem(ACTIVE_PROFILE_KEY);
     } catch (error) {
-      console.error('Error getting active profile ID:', error);
+      if (__DEV__) {
+        console.error('Error getting active profile ID:', error);
+      }
       return null;
     }
   }
@@ -91,7 +97,9 @@ export class ProfileStorageService {
         await AsyncStorage.removeItem(ACTIVE_PROFILE_KEY);
       }
     } catch (error) {
-      console.error('Error setting active profile ID:', error);
+      if (__DEV__) {
+        console.error('Error setting active profile ID:', error);
+      }
       throw error;
     }
   }
@@ -104,7 +112,9 @@ export class ProfileStorageService {
       const sessionsJson = await AsyncStorage.getItem(SESSIONS_STORAGE_KEY);
       return sessionsJson ? JSON.parse(sessionsJson) : {};
     } catch (error) {
-      console.error('Error getting sessions:', error);
+      if (__DEV__) {
+        console.error('Error getting sessions:', error);
+      }
       return {};
     }
   }
@@ -118,7 +128,9 @@ export class ProfileStorageService {
       sessions[profileId] = session;
       await AsyncStorage.setItem(SESSIONS_STORAGE_KEY, JSON.stringify(sessions));
     } catch (error) {
-      console.error('Error saving session:', error);
+      if (__DEV__) {
+        console.error('Error saving session:', error);
+      }
       throw error;
     }
   }
@@ -132,7 +144,9 @@ export class ProfileStorageService {
       delete sessions[profileId];
       await AsyncStorage.setItem(SESSIONS_STORAGE_KEY, JSON.stringify(sessions));
     } catch (error) {
-      console.error('Error removing session:', error);
+      if (__DEV__) {
+        console.error('Error removing session:', error);
+      }
       throw error;
     }
   }

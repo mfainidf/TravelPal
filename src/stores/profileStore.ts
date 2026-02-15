@@ -139,7 +139,7 @@ export const useProfileStore = create<ProfileStoreState>((set, get) => ({
         profileId: data.user.id,
         accessToken: data.session.access_token,
         refreshToken: data.session.refresh_token,
-        expiresAt: data.session.expires_at || 0,
+        expiresAt: data.session.expires_at || Date.now() / 1000 + 3600, // Default 1 hour
       };
       await ProfileStorageService.saveSession(data.user.id, session);
 
