@@ -38,9 +38,13 @@ export const useAuthStore = create<AuthState>((set) => ({
       set({ session, user: session?.user ?? null });
 
       // Listen for auth changes
-      supabase.auth.onAuthStateChange((_event, session) => {
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
         set({ session, user: session?.user ?? null });
       });
+
+      // Note: The subscription will be cleaned up when the Supabase client is destroyed
+      // For a more robust cleanup, consider storing the subscription and providing
+      // a cleanup method if needed
     } catch (error) {
       console.error('Error initializing auth:', error);
     } finally {
