@@ -1,0 +1,54 @@
+{
+  "navigation": {
+    "home": "Home",
+    "destinations": "Destinazioni",
+    "trips": "Viaggi",
+    "profile": "Profilo",
+    "settings": "Impostazioni",
+    "about": "Chi siamo",
+    "contact": "Contatti"
+  },
+  "buttons": {
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "add": "Aggiungi",
+    "close": "Chiudi",
+    "confirm": "Conferma",
+    "back": "Indietro",
+    "next": "Avanti",
+    "search": "Cerca",
+    "filter": "Filtra",
+    "submit": "Invia"
+  },
+  "common": {
+    "welcome": "Benvenuto",
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo",
+    "noData": "Nessun dato disponibile",
+    "confirm": "Sei sicuro?",
+    "yes": "Sì",
+    "no": "No",
+    "email": "Email",
+    "password": "Password",
+    "username": "Nome utente",
+    "language": "Lingua",
+    "logout": "Esci",
+    "login": "Accedi",
+    "register": "Registrati"
+  },
+  "messages": {
+    "saveSuccess": "Salvato con successo",
+    "saveError": "Errore durante il salvataggio",
+    "deleteSuccess": "Eliminato con successo",
+    "deleteError": "Errore durante l'eliminazione",
+    "updateSuccess": "Aggiornato con successo",
+    "updateError": "Errore durante l'aggiornamento",
+    "loadError": "Errore durante il caricamento dei dati",
+    "networkError": "Errore di connessione alla rete",
+    "invalidInput": "Input non valido",
+    "requiredField": "Campo obbligatorio"
+  }
+}
