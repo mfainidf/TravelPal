@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "TravelPalTemp",
-    "slug": "TravelPalTemp",
+    "name": "TravelPal",
+    "slug": "TravelPal",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,7 +21,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
