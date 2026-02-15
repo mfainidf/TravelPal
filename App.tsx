@@ -10,7 +10,9 @@ function AppContent() {
   useEffect(() => {
     initialize();
     return () => cleanup();
-  }, [initialize, cleanup]);
+    // Zustand store functions are stable and don't need to be in the dependency array
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (loading) {
     return (
