@@ -18,7 +18,27 @@
       }
     },
     "register": {
-      "title": "Registrati"
+      "title": "Registrati",
+      "name": "Nome",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Conferma Password",
+      "submit": "Registrati",
+      "hasAccount": "Hai già un account?",
+      "login": "Accedi",
+      "errors": {
+        "required": "Campo obbligatorio",
+        "invalidEmail": "Email non valida",
+        "minPassword": "La password deve avere almeno 6 caratteri",
+        "passwordsNotMatch": "Le password non corrispondono",
+        "emailInUse": "Email già in uso",
+        "networkError": "Errore di rete. Riprova più tardi",
+        "unknownError": "Errore sconosciuto. Riprova"
+      },
+      "success": {
+        "title": "Registrazione completata",
+        "message": "Account creato con successo! Verrai reindirizzato alla home."
+      }
     }
   },
   "tabs": {
