@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { PaperProvider, Text, Button, Surface } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import theme, { spacing } from './src/theme/theme';
+import theme, { spacing } from './src/theme';
 
 export default function App() {
   return (
