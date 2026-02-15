@@ -5,12 +5,12 @@ import { PersistQueryClientProvider, queryClient, persistOptions } from './src/s
 import { useAuthStore } from './src/stores/authStore';
 
 function AppContent() {
-  const { loading, user, initialize } = useAuthStore();
+  const { loading, user, initialize, cleanup } = useAuthStore();
 
   useEffect(() => {
     initialize();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return () => cleanup();
+  }, [initialize, cleanup]);
 
   if (loading) {
     return (

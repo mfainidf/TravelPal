@@ -1,22 +1,25 @@
 import { create } from 'zustand';
-import { Session, User } from '@supabase/supabase-js';
+import { Session, User, AuthChangeEvent } from '@supabase/supabase-js';
 import { supabase } from '../services/supabase';
 
 interface AuthState {
   session: Session | null;
   user: User | null;
   loading: boolean;
+  authSubscription: { unsubscribe: () => void } | null;
   setSession: (session: Session | null) => void;
   setUser: (user: User | null) => void;
   setLoading: (loading: boolean) => void;
   signOut: () => Promise<void>;
   initialize: () => Promise<void>;
+  cleanup: () => void;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
+export const useAuthStore = create<AuthState>((set, get) => ({
   session: null,
   user: null,
   loading: true,
+  authSubscription: null,
 
   setSession: (session) => set({ session, user: session?.user ?? null }),
   
@@ -42,13 +45,19 @@ export const useAuthStore = create<AuthState>((set) => ({
         set({ session, user: session?.user ?? null });
       });
 
-      // Note: The subscription will be cleaned up when the Supabase client is destroyed
-      // For a more robust cleanup, consider storing the subscription and providing
-      // a cleanup method if needed
+      set({ authSubscription: subscription });
     } catch (error) {
       console.error('Error initializing auth:', error);
     } finally {
       set({ loading: false });
+    }
+  },
+
+  cleanup: () => {
+    const { authSubscription } = get();
+    if (authSubscription) {
+      authSubscription.unsubscribe();
+      set({ authSubscription: null });
     }
   },
 }));
