@@ -14,18 +14,18 @@ import { t } from '../../src/i18n';
 // Required for OAuth to work properly
 WebBrowser.maybeCompleteAuthSession();
 
-// Validation schema
-const loginSchema = z.object({
-  email: z.string().min(1, t('auth.login.errors.required')).email(t('auth.login.errors.invalidEmail')),
-  password: z.string().min(6, t('auth.login.errors.minPassword')),
-});
-
-type LoginForm = z.infer<typeof loginSchema>;
-
 export default function LoginScreen() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+
+  // Validation schema - defined inside component to support dynamic translations
+  const loginSchema = z.object({
+    email: z.string().min(1, t('auth.login.errors.required')).email(t('auth.login.errors.invalidEmail')),
+    password: z.string().min(6, t('auth.login.errors.minPassword')),
+  });
+
+  type LoginForm = z.infer<typeof loginSchema>;
 
   const {
     control,
@@ -93,6 +93,8 @@ export default function LoginScreen() {
         
         if (result.type === 'success' && result.url) {
           // Extract the URL fragments and query params
+          // OAuth providers return tokens in the URL hash (#access_token=...) 
+          // following the OAuth implicit flow convention
           const url = new URL(result.url);
           const params = new URLSearchParams(url.hash.substring(1)); // Remove the '#' and parse
           

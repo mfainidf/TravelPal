@@ -14,6 +14,8 @@ export default function RootLayout() {
   useEffect(() => {
     initialize();
     return () => cleanup();
+    // initialize and cleanup are stable functions from Zustand and don't need to be in deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -28,7 +30,7 @@ export default function RootLayout() {
       // Redirect to tabs if authenticated
       router.replace('/(tabs)');
     }
-  }, [session, segments, loading]);
+  }, [session, segments, loading, router]);
 
   if (loading) {
     return null; // Or a loading screen
