@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { View, StyleSheet, ScrollView, Alert } from 'react-native';
 import { TextInput, Button, Text, HelperText } from 'react-native-paper';
-import { Link, useRouter } from 'expo-router';
+import { Link } from 'expo-router';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -10,7 +10,6 @@ import { spacing } from '../../src/theme/theme';
 import { t } from '../../src/i18n';
 
 export default function RegisterScreen() {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   // Validation schema - defined inside component to support dynamic translations
@@ -45,7 +44,7 @@ export default function RegisterScreen() {
       setLoading(true);
       
       // Sign up the user
-      const { data: authData, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
         options: {
@@ -80,7 +79,7 @@ export default function RegisterScreen() {
           },
         ]
       );
-    } catch (error: any) {
+    } catch {
       Alert.alert('Errore', t('auth.register.errors.unknownError'));
     } finally {
       setLoading(false);
