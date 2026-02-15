@@ -27,6 +27,9 @@ const travelPalColors = {
 
 /**
  * Typography configuration
+ * Note: This is provided as a reference for the Material Design 3 typography scale.
+ * React Native Paper's MD3 theme doesn't directly consume this object, but these
+ * values can be used when styling Text components with the variant prop.
  */
 const typography = {
   displayLarge: {
