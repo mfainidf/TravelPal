@@ -17,6 +17,11 @@ import { Profile, ProfileUpdate, TravelPreferences } from '../../src/types/profi
 import { spacing } from '../../src/theme';
 import theme from '../../src/theme';
 
+// Helper function to generate translation keys for preferences
+const getPreferenceTranslationKey = (prefix: string, value: string): string => {
+  return `${prefix}${value.charAt(0).toUpperCase()}${value.slice(1)}`;
+};
+
 export default function ProfileScreen() {
   const { t } = useTranslation();
   const { user, signOut } = useAuthStore();
@@ -77,9 +82,10 @@ export default function ProfileScreen() {
 
     try {
       setSaving(true);
+      // Convert null or empty string to undefined for optional fields
       const updates: ProfileUpdate = {
-        full_name: fullName,
-        avatar_url: avatarUrl || undefined,
+        full_name: fullName.trim() || undefined,
+        avatar_url: avatarUrl && avatarUrl.trim() ? avatarUrl : undefined,
         travel_preferences: preferences,
       };
 
@@ -210,7 +216,7 @@ export default function ProfileScreen() {
             ) : (
               <Text variant="bodyLarge">
                 {preferences.budget
-                  ? t(`profile.budget${preferences.budget.charAt(0).toUpperCase() + preferences.budget.slice(1)}`)
+                  ? t(getPreferenceTranslationKey('profile.budget', preferences.budget))
                   : t('common.noData')}
               </Text>
             )}
@@ -238,7 +244,7 @@ export default function ProfileScreen() {
             ) : (
               <Text variant="bodyLarge">
                 {preferences.travelStyle
-                  ? t(`profile.style${preferences.travelStyle.charAt(0).toUpperCase() + preferences.travelStyle.slice(1)}`)
+                  ? t(getPreferenceTranslationKey('profile.style', preferences.travelStyle))
                   : t('common.noData')}
               </Text>
             )}
@@ -266,7 +272,7 @@ export default function ProfileScreen() {
             ) : (
               <Text variant="bodyLarge">
                 {preferences.accommodation
-                  ? t(`profile.accom${preferences.accommodation.charAt(0).toUpperCase() + preferences.accommodation.slice(1)}`)
+                  ? t(getPreferenceTranslationKey('profile.accom', preferences.accommodation))
                   : t('common.noData')}
               </Text>
             )}
@@ -294,7 +300,7 @@ export default function ProfileScreen() {
             ) : (
               <Text variant="bodyLarge">
                 {preferences.transportation
-                  ? t(`profile.transport${preferences.transportation.charAt(0).toUpperCase() + preferences.transportation.slice(1)}`)
+                  ? t(getPreferenceTranslationKey('profile.transport', preferences.transportation))
                   : t('common.noData')}
               </Text>
             )}
