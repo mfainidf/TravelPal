@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { PaperProvider } from 'react-native-paper';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import { theme } from '../src/theme';
+import theme from '../src/theme';
 import { queryClient } from '../src/services/queryClient';
 import { useAuthStore } from '../src/stores/authStore';
 import '../src/i18n';

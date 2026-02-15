@@ -14,7 +14,8 @@ import * as ImagePicker from 'expo-image-picker';
 import { useAuthStore } from '../../src/stores/authStore';
 import { supabase } from '../../src/services/supabase';
 import { Profile, ProfileUpdate, TravelPreferences } from '../../src/types/profile';
-import { spacing, theme } from '../../src/theme';
+import { spacing } from '../../src/theme';
+import theme from '../../src/theme';
 
 export default function ProfileScreen() {
   const { t } = useTranslation();
@@ -78,7 +79,7 @@ export default function ProfileScreen() {
       setSaving(true);
       const updates: ProfileUpdate = {
         full_name: fullName,
-        avatar_url: avatarUrl,
+        avatar_url: avatarUrl || undefined,
         travel_preferences: preferences,
       };
 

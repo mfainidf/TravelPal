@@ -12,6 +12,7 @@
     "@react-native-async-storage/async-storage": "^1.23.1",
     "@supabase/supabase-js": "^2.39.0",
     "@tanstack/react-query": "^5.17.0",
+    "@tanstack/react-query-persist-client": "^5.90.22",
     "expo": "~52.0.0",
     "expo-image-picker": "~15.0.5",
     "expo-linking": "~7.0.0",
